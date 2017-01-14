@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:200px;height:200px;
+            background: red;
+            animation-name:myanimation;
+            animation-duration: 2s;
+            /*animation-fill-mode: backwards;*/
+
+            animation-play-state: paused;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+            animation-delay: 1s;
+            animation-timing-function:cubic-bezier(1,1,1,1);
+
+        }
+        @-webkit-keyframes myanimation {
+            0%{
+                transform: translate(0,0);
+            }
+            100%{
+                transform:translate(400px,0);
+
+            }
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var div=document.getElementsByTagName("div")[0];
+            div.onclick=function(){
+                div.style.animationPlayState="running";
+            }
+        }
+    </script>
+</head>
+<body>
+<div></div>
+
+</body>
+</html>

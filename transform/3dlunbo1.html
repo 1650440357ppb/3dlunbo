@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>竖的</title>
+    <style>
+        .boxs{
+            width:800px;height:400px;
+            position:fixed;margin:auto;
+            left:0;top:0;bottom:0;right:0;
+            border:1px solid red;
+            /*perspective:7000px;*/
+            /*perspective-origin: bottom;*/
+        }
+    </style>
+    <script>
+        window.onload=function() {
+            var boxs = document.getElementsByClassName("boxs")[0];
+            var widths = parseInt(getComputedStyle(boxs, null).width);
+            var heights = parseInt(getComputedStyle(boxs, null).height);
+            var nums =4;
+            var arr=[];
+            for (var i = 0; i < nums; i++) {
+                //创建创景
+                var sence = document.createElement("div");
+                sence.style.cssText = "width:"+widths/nums+"px;height:100%;position:absolute;left:"+(i*(widths/nums))+"px;top:0";
+
+                var box = document.createElement("div");
+                box.style.cssText = "width:"+widths/nums+"px;height:100%;position:absolute;left:0;top:0;transform-style:preserve-3d;transition:transform 2s ease "+i*0.3+"s;border:1px solid blue;transform-origin:center center bottom";
+
+                for (var j = 0; j < 6; j++) {
+                    var panel = document.createElement("div");
+                    panel.style.cssText = "position:absolute;left:0;top:0;";
+                    if (j == 0) {
+                        panel.style.width = widths + "px";
+                        panel.style.height = widths + "px";
+                        panel.style.transformOrigin = "top";
+                        panel.style.transform = "rotateX(-90deg)";
+
+                        panel.style.background = "url(image/1.jpg) no-repeat " +-i * (heights / nums) + "px 0";
+                    } else if (j == 1) {
+                        panel.style.width = widths + "px";
+                        panel.style.height = ""+heights/nums+"px";
+                        panel.style.transformOrigin = "left";
+                        panel.style.transform = "rotateY(-90deg)";
+                    } else if (j == 2) {
+                        panel.style.width = widths + "px";
+                        panel.style.height =widths + "px";
+                        panel.style.transformOrigin = "bottom";
+                        panel.style.background="#000";
+                        panel.style.top=-(widths-heights/nums)+"px";
+                        panel.style.transform = "rotateX(-90deg)";
+                        panel.style.background = "url(image/2.jpg) no-repeat "+-i* (heights/nums) + "px 0";
+                    }else if (j == 3) {
+                        panel.style.width = widths + "px";
+                        panel.style.height =""+heights/nums+"px";
+                        panel.style.transformOrigin = "right";
+                        panel.style.transform = "rotateY(90deg)";
+//                        panel.style.background = "url(image/2.jpg) no-repeat 0 "+-i* (heights/nums) + "px";
+                    }else if (j == 4) {
+                        panel.style.width = widths + "px";
+                        panel.style.height =""+heights/nums+"px";
+                        panel.style.background = "url(image/3.jpg) no-repeat "+-i* (heights/nums) + "px 0";
+//                        panel.style.backfaceVisibility= "hidden";
+                    }else if (j == 5) {
+                        panel.style.width = widths + "px";
+                        panel.style.height =""+heights/nums+"px";
+//                        panel.style.transformOrigin = "left";
+//                        panel.style.transform = "rotateY(-90deg)";
+                        panel.style.background = "url(image/4.jpg) no-repeat "+-i* (heights/nums) + "px 0";
+                        panel.style.transform="translateZ(800px)";
+                    }
+
+
+                    box.appendChild(panel);
+
+                }
+                sence.appendChild(box);
+                boxs.appendChild(sence);
+                arr.push(box);
+//                if(i<5){
+//                    arr[i].style.animation="one "+i*0.8+"s cubic-bezier(0.29,-0.46,0.51,1.15)";
+//                }else{
+//                    arr[i].style.animation="one "+(8-i*0.8)+"s cubic-bezier(0.29,-0.46,0.51,1.15)";
+//                }
+
+
+            }
+            var init=0;
+//            var t=setInterval(function () {
+//                init+=90;
+//                for(var i=0;i<arr.length;i++ ){
+//                    arr[i].style.transform="rotateY("+init+"deg)";
+//
+//
+//                }
+//            }, 5000);
+
+            window.focus=function(){
+                t=setInterval;
+            };
+            window.blur=function () {
+                clearInterval(t);
+            };
+
+
+//           $(window).focus(function(){
+//               t1=setInterval(move,3000);
+//               t2=setInterval(move1,50);
+//
+//           });
+//           $(window).blur(function(){
+//               clearInterval(t1);
+//               clearInterval(t2);
+//           })
+
+
+
+
+        }
+    </script>
+</head>
+<body>
+<div class="boxs">
+    <div class="sence">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</div>
+
+</body>
+</html>

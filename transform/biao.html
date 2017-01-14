@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .clock{
+            width:200px;height:200px;
+            border:8px solid #ff3deb;
+            position:absolute;
+            left:0;top:0;right:0;bottom:0;
+            margin:auto;
+            border-radius: 50%;
+            background: #4ae2ef;
+        }
+        .dian{
+            width:6px;height:6px;
+            border-radius:50%;
+            background: #000;
+            position: absolute;
+            left:0;top:0;right:0;bottom:0;
+            margin:auto;
+            z-index: 99;
+        }
+        /*.clock{*/
+            /*width:4px; height:8px;*/
+        /*}*/
+    </style>
+    <script>
+        window.onload=function(){
+            var clock=document.querySelector(".clock");
+            var time=new Date();
+            createMark();
+//            createPointer();
+            var hpointer=createPointer(6,40,"#000",time.getHours()*30+time.getMinutes()*6/12);
+            var mpointer=createPointer(4,60,"#000",time.getMinutes()*6);
+            var spointer=createPointer(2,80,"red",time.getSeconds()*6);
+
+            setInterval(function(){
+                var time=new Date();
+                hpointer.style.transform="translate("+(200-hpointer.w)/2+"px,"+(100-hpointer.h)+"px) rotate("+(time.getHours()*30+time.getMinutes()*6/12)+"deg)";
+                mpointer.style.transform="translate("+(200-mpointer.w)/2+"px,"+(100-mpointer.h)+"px) rotate("+(time.getMinutes()*6)+"deg)";
+                spointer.style.transform="translate("+(200-spointer.w)/2+"px,"+(100-spointer.h)+"px) rotate("+(time.getSeconds()*6)+"deg)";
+
+
+            },1000);
+
+            function createMark(){
+                for(var i=0;i<60;i++){
+                    var w,h;
+                    if(i%5==0){
+                        w=4;
+                        h=8;
+                    }else{
+                        w=2;h=6;
+                    }
+                    var div=document.createElement("div");
+                    div.style.cssText="width:"+w+"px;height:"+h+"px;background:#000;position:absolute;left:0;top:0";
+                    div.style.transform="translate("+(200-w)/2+"px,0) rotate("+i*6+"deg)";
+                    div.style.transformOrigin="center 100px";
+                    clock.appendChild(div);
+                }
+            }
+                function createPointer(w,h,c,a) {
+                    var div=document.createElement("div");
+                    div.style.cssText="width:"+w+"px;height:"+h+"px;background:"+c+";position:absolute;left:0;top:0;";
+                    div.style.transformOrigin="center bottom";
+                    div.style.transform="translate("+(200-w)/2+"px,"+(100-h)+"px) rotate("+a+"deg)";
+                    div.w=w;
+                    div.h=h;
+                    clock.appendChild(div);
+                    return div;
+                }
+    //            function createPointer(w,h,c,a) {
+    //                var div=document.createElement("div");
+    //                div.style.cssText="width:"+w+"px;height:"+h+"px;background:"+c+";position:absolute;left:0;top:0;";
+    //                div.style.transformOrigin="center bottom";
+    //                div.style.transform="translate("+(200-w)/2+"px,"+(100-h)+"px) rotate("+a+"deg)";
+    //                clock.appendChild(div);
+    //                return div;
+    //            }
+
+
+
+        }
+    </script>
+</head>
+<body>
+<div class="clock">
+    <div class="dian"></div>
+</div>
+</body>
+</html>
